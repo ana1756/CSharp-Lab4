@@ -1,6 +1,7 @@
 ﻿using Lab4.Exceptions;
 using Lab4.Models;
 using Lab4.Navigation;
+using Lab4.Services;
 using Lab4.Utils;
 using Lab4.Views;
 using System;
@@ -16,6 +17,7 @@ namespace Lab4.ViewModels
     {
         private Person _person;
         private RelayCommand<object> _proceedCommand;
+        private RelayCommand<object> _backCommand;
         private Action _gotoInfoPerson;
 
         public AddPersonViewModel(Action goToTable)
@@ -107,9 +109,30 @@ namespace Lab4.ViewModels
             }
         }
 
+        public RelayCommand<object> BackCommand
+        {
+            get
+            {
+                _backCommand = new RelayCommand<object>(_ => Back());
+                return _backCommand;
+            }
+        }
+
+        private bool CanExecuteBack()
+        {
+            return true;
+        }
+
+
+
         #endregion
 
+        private void Back()
+        {
 
+            _gotoInfoPerson.Invoke();
+
+        }
 
 
         public MainNavigationTypes ViewType()
@@ -123,6 +146,8 @@ namespace Lab4.ViewModels
             try
             {
                 _person = new Person(Name, Surname, Email, BirthDate);
+                
+                
             }
             catch (InvalidEmailException e)
             {
@@ -140,7 +165,12 @@ namespace Lab4.ViewModels
                 return;
             }
 
-            _gotoInfoPerson.Invoke();
+            var authService = new AuthentificationService();
+           if (authService.RegisterUser(_person).Result)
+            {
+                MessageBox.Show("Authentification Succeeded!");
+            }
+           // _gotoInfoPerson.Invoke();
 
             ShowInfoView sw = new ShowInfoView(this);
            // Thread.Sleep(2000);

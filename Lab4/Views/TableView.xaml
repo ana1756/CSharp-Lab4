@@ -6,10 +6,11 @@
              xmlns:local="clr-namespace:Lab4.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    
     <DockPanel LastChildFill="False">
         <DataGrid
-            DockPanel.Dock="Top"     
-            ItemsSource="{Binding Users, Mode=OneWay}" 
+            DockPanel.Dock="Top"
+            ItemsSource="{Binding Users, Mode=OneWay, UpdateSourceTrigger=LostFocus}" 
             AutoGenerateColumns="False">
 
             <DataGrid.Columns>

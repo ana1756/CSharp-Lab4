@@ -28,7 +28,9 @@ namespace Lab4.ViewModels
                 case MainNavigationTypes.Table:
                     return new TableViewModel(()=> Navigate(MainNavigationTypes.AddPerson));
                 case MainNavigationTypes.AddPerson:
-                    return new AddPersonViewModel(()=>Navigate(MainNavigationTypes.Table));
+                    {
+                        return new AddPersonViewModel(() => Navigate(MainNavigationTypes.Table));
+                    }
                 default: return null;
                 
             }

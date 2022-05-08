@@ -1,4 +1,5 @@
 ﻿using JetBrains.Annotations;
+using Lab4.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -48,8 +49,10 @@ namespace Lab4.Navigation
             INavigatable<TObject> viewModel1 = _viewModels.FirstOrDefault(viewModel => viewModel.ViewType().Equals(type));
 
             if (viewModel1 != null)
+            {
                 return viewModel1;
 
+            }
             return CreateViewModel(type);
         }
 

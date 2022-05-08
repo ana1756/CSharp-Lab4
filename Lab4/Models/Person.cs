@@ -84,13 +84,19 @@ namespace Lab4.Models
             CalculateAgeAsync();
         }
 
-        public Person(string name, string surname, string email)
-            : this(name, surname, email, DateTime.MinValue)
-        { }
+        public Person(string name, string surname, string email, string age, string sunSign, string chineseSign)
+        {
+            if (!Regex.IsMatch(email, emailRegex))
+                throw new InvalidEmailException("Invalid email value");
+            
+            _name = name;
+            _surname = surname;
+            _email = email;
+            _age = Int32.Parse(age);
+            _chineseSign = chineseSign;
+            _sunSign = sunSign;
+        }
 
-        public Person(string name, string surname, DateTime birthDate)
-            : this(name, surname, "unknown", birthDate)
-        { }
         #endregion
 
         #region Asunchronous Methods

@@ -13,6 +13,7 @@
             <RowDefinition Height="90"></RowDefinition>
             <RowDefinition Height="90"></RowDefinition>
             <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -112,8 +113,9 @@
         <StackPanel
            Name="ProceedButtonPanel"
            Grid.Row="2"
+              Grid.Column="1"
            VerticalAlignment="Center"
-           Grid.ColumnSpan="2"
+           Grid.ColumnSpan="1"
             >
 
 
@@ -127,6 +129,27 @@
                 Margin="20, 0, 20, 0"
               
                 Command="{Binding ProceedCommand}"/>
+
+
+        </StackPanel>
+        <StackPanel
+           Grid.Row="2"
+            Grid.Column="0"
+           VerticalAlignment="Center"
+           Grid.ColumnSpan="1"
+            >
+
+
+            <Button
+                Name="BackButton"
+                Content="Back"
+                Background="White"
+                FontSize="20"
+                FontFamily="Candara"
+                Height="35"
+                Margin="20, 0, 20, 0"
+              
+                Command="{Binding BackCommand}"/>
 
 
         </StackPanel>
