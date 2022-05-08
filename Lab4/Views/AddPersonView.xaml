@@ -1,0 +1,138 @@
+﻿<UserControl x:Class="Lab4.Views.AddPersonView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Lab4.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="250" d:DesignWidth="600">
+    <Grid>
+
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="90"></RowDefinition>
+            <RowDefinition Height="90"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel
+           Name="NameInput"
+           Grid.Row="0"
+           Grid.Column="0"
+           VerticalAlignment="Center"
+            Margin="10, 0, 10, 0"
+             Background="AliceBlue">
+
+            <TextBlock
+                Text="First name"
+                Margin="20, 5, 20, 0"
+                FontFamily="Candara"
+                FontSize="16"/>
+
+            <TextBox
+                Margin="20, 0, 20, 10"
+                Height="30"   
+                FontSize="18"
+                Text="{Binding Name, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
+                />
+        </StackPanel>
+
+        <StackPanel
+           Name="SurnameInput"
+           Grid.Row="0"
+           Grid.Column="1"
+           VerticalAlignment="Center"
+             Margin="10, 0, 10, 0"
+            Background="AliceBlue">
+
+            <TextBlock
+                Text="Last name"
+                Margin="20, 5, 20, 0"
+                FontFamily="Candara"
+                FontSize="16"/>
+
+            <TextBox
+                Text="{Binding Surname, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
+                 Margin="20, 0, 20, 10"
+                Height="30" 
+                FontSize="18"
+                />
+        </StackPanel>
+
+        <StackPanel
+           Name="EmailInput"
+           Grid.Row="1"
+           Grid.Column="0"
+           VerticalAlignment="Center"
+             Margin="10, 0, 10, 0"
+            Background="AliceBlue">
+
+            <TextBlock
+                Text="Email"
+               Margin="20, 5, 20, 0"
+                FontFamily="Candara"
+                FontSize="16"/>
+
+            <TextBox
+                Text="{Binding Email, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
+                Margin="20, 0, 20, 10"
+                Height="30"
+                FontSize="18"
+                />
+        </StackPanel>
+
+        <StackPanel
+           Name="BirthDateInput"
+           Grid.Row="1"
+           Grid.Column="1"
+           VerticalAlignment="Center"
+             Margin="10, 0, 10, 0"
+            Background="AliceBlue">
+
+            <TextBlock
+                Text="Date of birth"
+                Margin="20, 5, 20, 0"
+                FontFamily="Candara"
+                FontSize="16"/>
+
+            <DatePicker
+                Name="datePicker"  
+                 Margin="20, 0, 20, 10"
+                LostFocus="datePicker_LostFocus"
+                FontSize="16"
+                Width="238"
+                FontFamily="Candara"/>
+        </StackPanel>
+
+        <StackPanel
+           Name="ProceedButtonPanel"
+           Grid.Row="2"
+           VerticalAlignment="Center"
+           Grid.ColumnSpan="2"
+            >
+
+
+            <Button
+                Name="ProceedButton"
+                Content="Proceed"
+                Background="White"
+                FontSize="20"
+                FontFamily="Candara"
+                Height="35"
+                Margin="20, 0, 20, 0"
+              
+                Command="{Binding ProceedCommand}"/>
+
+
+        </StackPanel>
+
+
+
+
+    </Grid>
+</UserControl>

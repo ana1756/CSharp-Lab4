@@ -1,5 +1,4 @@
 ﻿using Lab4.ViewModels;
-using Lab4.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,19 +14,24 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Lab4
+namespace Lab4.Views
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+
+    public partial class AddPersonView : UserControl
     {
-        public MainWindow()
+
+        public AddPersonView()
         {
             InitializeComponent();
-            Content = new NavigationViewModel();
+            
         }
 
-       
+        private void datePicker_LostFocus(object sender, RoutedEventArgs e)
+        {
+            
+            if (((AddPersonViewModel)DataContext).Date != null)
+                if (datePicker!=null && datePicker.SelectedDate != null)
+                ((AddPersonViewModel)DataContext).BirthDate = datePicker.SelectedDate.Value;
+        }
     }
 }

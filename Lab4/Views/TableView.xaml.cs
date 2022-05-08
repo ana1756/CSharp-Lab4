@@ -1,6 +1,4 @@
-﻿using Lab4.ViewModels;
-using Lab4.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,19 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Lab4
+namespace Lab4.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for TableView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class TableView : UserControl
     {
-        public MainWindow()
+        public TableView()
         {
             InitializeComponent();
-            Content = new NavigationViewModel();
         }
 
-       
     }
 }

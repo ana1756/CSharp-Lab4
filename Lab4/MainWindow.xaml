@@ -3,10 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Lab4"
+         xmlns:viewModels="clr-namespace:Lab4.ViewModels"
+             xmlns:views="clr-namespace:Lab4.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="450" Width="800"
+        Content="{Binding CurrentViewModel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+    <Window.Resources>
+        <DataTemplate DataType="{ x:Type viewModels:NavigationViewModel}">
+            <views:NavigationView></views:NavigationView>
+        </DataTemplate>
+    </Window.Resources>
 </Window>
