@@ -1,4 +1,5 @@
 ﻿using Lab4.Models;
+using Lab4.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,20 +21,50 @@ namespace Lab4.Repositories
                 Directory.CreateDirectory(BaseFolder);
         }
 
-        public async Task AddOrUpdateAsync(DBPerson obj)
+        public static async Task<int> GetID()
+        {
+            Random random = new Random();
+            return random.Next();
+            
+        }
+
+        public static async Task AddOrUpdateAsync(DBPerson obj)
         {
             var stringObj = JsonSerializer.Serialize(obj);
 
-            using (StreamWriter sw = new StreamWriter(Path.Combine(BaseFolder, obj.LastName + "-" + obj.FirstName), false))
+            using (StreamWriter sw = new StreamWriter(Path.Combine(BaseFolder, "person-" + obj.ID), false))
             {
                 await sw.WriteAsync(stringObj);
             }
         }
 
-        public async Task<DBPerson> GetAsync(string firstName, string lastName)
+        public static async Task Update(string id, string name, string oldname)
+        {
+            if (File.Exists(System.IO.Path.Combine(BaseFolder, "person-" + id)))
+            {
+
+                string json = File.ReadAllText(System.IO.Path.Combine(BaseFolder, "person-" + id));
+                string a = json.Replace(oldname, name);
+                int i = a.Length;
+                File.Delete(System.IO.Path.Combine(BaseFolder, "person-" + id));
+
+                using (StreamWriter sw = new StreamWriter(Path.Combine(BaseFolder, "person-" + id), false))
+                {
+                    await sw.WriteAsync(a);
+                }
+
+
+            }
+        }
+
+
+
+
+
+        public async Task<DBPerson> GetAsync(string id)
         {
             string stringObj = null;
-            string filePath = Path.Combine(BaseFolder, firstName + "-" + lastName);
+            string filePath = Path.Combine(BaseFolder, "person-" + id);
 
             if (!File.Exists(filePath))
                 return null;
@@ -64,7 +95,7 @@ namespace Lab4.Repositories
             return res;
         }
 
-        public List<DBPerson> GetAll()
+        public static List<DBPerson> GetAll()
         {
             var res = new List<DBPerson>();
             foreach (var file in Directory.EnumerateFiles(BaseFolder))
@@ -81,5 +112,8 @@ namespace Lab4.Repositories
 
             return res;
         }
+
+
+
     }
 }

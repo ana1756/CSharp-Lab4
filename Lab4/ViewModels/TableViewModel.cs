@@ -1,6 +1,7 @@
 ﻿using JetBrains.Annotations;
 using Lab4.Models;
 using Lab4.Navigation;
+using Lab4.Repositories;
 using Lab4.Services;
 using Lab4.Utils;
 using System;
@@ -23,10 +24,11 @@ namespace Lab4.ViewModels
         private PersonService _personService;
 
         public event PropertyChangedEventHandler PropertyChanged;
+        FileRepository fileRepository;
 
-        public List<Person> Users
+        public List<DBPerson> Users
         {
-            get => _personService.GetAllPersons();
+            get => FileRepository.GetAll();
            
         }
 
@@ -39,6 +41,7 @@ namespace Lab4.ViewModels
             _gotoAddPerson = gotoAddPerson;
             _personService = new PersonService();
             _users = new ObservableCollection<Person>(_personService.GetAllPersons());
+            fileRepository = new FileRepository();
         }
 
         public RelayCommand<object> AddPersonCommand

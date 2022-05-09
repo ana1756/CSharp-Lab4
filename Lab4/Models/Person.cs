@@ -1,4 +1,5 @@
 ﻿using Lab4.Exceptions;
+using Lab4.Repositories;
 using System;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
@@ -6,16 +7,23 @@ using System.Threading.Tasks;
 
 namespace Lab4.Models
 {
-    public class Person
+    public class Person : INotifyPropertyChanged
     {
+
+        private static readonly string BaseFolder =
+          System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LAB4-PersonData");
+
+
         private static String emailRegex = "^(.+)@(.+)$";
         public event PropertyChangedEventHandler PropertyChanged;
+        private static int _id = 0;
 
         #region Private Fields
         private string _name;
         private string _surname;
         private string _email;
-        public string _id;
+        private int _myId;
+
         private DateTime _birthDate;
 
         private string _chineseSign;
@@ -24,22 +32,29 @@ namespace Lab4.Models
         #endregion
         // немає id
         #region Properties
-        public string Guid
+
+        public string ID
         {
-            get { return _id; }
+            get { return _myId.ToString(); }
+            set { _myId = Int32.Parse(value); }
         }
 
 
         public string FirstName
         {
             get { return _name; }
-            set { _name = value; }
+            set { _name = value;
+
+            }
+            
         }
+
+
 
         public string LastName
         {
             get { return _surname; }
-            set { _surname = value; }
+            set { _surname = value; OnPropertyChanged(); }
         }
 
         public string Email
@@ -81,6 +96,7 @@ namespace Lab4.Models
                 throw new BirthDateInFutureException("Invalid birth date value");
             if (birthDate.Year < 1887)
                 throw new BirthDateInPastException("Invalid birth date value");
+            _myId = FileRepository.GetID().Result;
             _name = name;
             _surname = surname;
             _email = email;
@@ -91,11 +107,11 @@ namespace Lab4.Models
             CalculateAgeAsync();
         }
 
-        public Person(string id, string name, string surname, string email, string age, string sunSign, string chineseSign)
+        public Person( string id, string name, string surname, string email, string age, string sunSign, string chineseSign)
         {
             if (!Regex.IsMatch(email, emailRegex))
                 throw new InvalidEmailException("Invalid email value");
-            _id = id;
+            _myId = Int32.Parse(id);
             _name = name;
             _surname = surname;
             _email = email;

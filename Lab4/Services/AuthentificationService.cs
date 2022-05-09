@@ -14,16 +14,19 @@ namespace Lab4.Services
 
         public async Task<bool> RegisterUser(Person regUser)
         {
-            var dbUser = await Repository.GetAsync(regUser.FirstName, regUser.LastName);
-                
+            var dbUser = await Repository.GetAsync(regUser.ID);
+
 
             if (dbUser != null)
-                throw new Exception("User already exists");
+            {
+               
+            }
 
             // checks
 
-            dbUser = new DBPerson(regUser.FirstName, regUser.LastName, regUser.Age.ToString(), regUser.Email,  regUser.SunSign, regUser.ChineseSign);
-           await Repository.AddOrUpdateAsync(dbUser);
+            dbUser = new DBPerson(regUser.ID, regUser.FirstName, regUser.LastName, regUser.Age.ToString(),
+                regUser.Email,  regUser.SunSign, regUser.ChineseSign);
+           await FileRepository.AddOrUpdateAsync(dbUser);
             return true;
         }
     }
