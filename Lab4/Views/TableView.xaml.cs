@@ -22,8 +22,6 @@ namespace Lab4.Views
     {
         public TableView()
         {
-            UpdateDefaultStyle();
-            UpdateLayout();
             InitializeComponent();
             
         }

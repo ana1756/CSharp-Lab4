@@ -15,21 +15,28 @@ namespace Lab4.Models
         private string _name;
         private string _surname;
         private string _email;
+        public string _id;
         private DateTime _birthDate;
 
         private string _chineseSign;
         private string _sunSign;
         private int _age;
         #endregion
-
+        // немає id
         #region Properties
-        public string Name
+        public string Guid
+        {
+            get { return _id; }
+        }
+
+
+        public string FirstName
         {
             get { return _name; }
             set { _name = value; }
         }
 
-        public string Surname
+        public string LastName
         {
             get { return _surname; }
             set { _surname = value; }
@@ -84,11 +91,11 @@ namespace Lab4.Models
             CalculateAgeAsync();
         }
 
-        public Person(string name, string surname, string email, string age, string sunSign, string chineseSign)
+        public Person(string id, string name, string surname, string email, string age, string sunSign, string chineseSign)
         {
             if (!Regex.IsMatch(email, emailRegex))
                 throw new InvalidEmailException("Invalid email value");
-            
+            _id = id;
             _name = name;
             _surname = surname;
             _email = email;

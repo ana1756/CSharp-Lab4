@@ -13,7 +13,7 @@ namespace Lab4.Models
         public DBPerson(string firstName, string lastName, string age,
             string email,  string sunSign, string chineseSign)
         {
-            Guid = Guid.NewGuid();
+            Guid = Guid.NewGuid();// той самий guid
             FirstName = firstName;
             LastName = lastName;
             Email = email;

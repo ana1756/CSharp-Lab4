@@ -14,7 +14,7 @@ namespace Lab4.Services
 
         public async Task<bool> RegisterUser(Person regUser)
         {
-            var dbUser = await Repository.GetAsync(regUser.Name, regUser.Surname);
+            var dbUser = await Repository.GetAsync(regUser.FirstName, regUser.LastName);
                 
 
             if (dbUser != null)
@@ -22,7 +22,7 @@ namespace Lab4.Services
 
             // checks
 
-            dbUser = new DBPerson(regUser.Name, regUser.Surname, regUser.Age.ToString(), regUser.Email,  regUser.SunSign, regUser.ChineseSign);
+            dbUser = new DBPerson(regUser.FirstName, regUser.LastName, regUser.Age.ToString(), regUser.Email,  regUser.SunSign, regUser.ChineseSign);
            await Repository.AddOrUpdateAsync(dbUser);
             return true;
         }

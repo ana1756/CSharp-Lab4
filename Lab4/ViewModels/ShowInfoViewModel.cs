@@ -23,7 +23,7 @@ namespace Lab4.ViewModels
             get 
             {
                 if (_person == null) return "";
-                return _person.Name; 
+                return _person.FirstName; 
             }
         }
         public string Surname
@@ -31,7 +31,7 @@ namespace Lab4.ViewModels
             get 
             {
                 if (_person == null) return "";
-                return _person.Surname; 
+                return _person.LastName; 
             }
         }
         public string Email

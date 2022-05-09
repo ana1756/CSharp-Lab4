@@ -18,7 +18,7 @@ namespace Lab4.Services
             foreach (var user in Repository.GetAll())
             {
                 
-                res.Add(new Person(user.FirstName, user.LastName, user.Email, user.Age, user.SunSign, user.ChineseSign));
+                res.Add(new Person(user.Guid.ToString(), user.FirstName, user.LastName, user.Email, user.Age, user.SunSign, user.ChineseSign));
             }
             return res;
         }
