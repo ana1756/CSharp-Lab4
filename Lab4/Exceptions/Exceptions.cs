@@ -23,4 +23,10 @@ namespace Lab4.Exceptions
         public InvalidEmailException(string message)
             : base(message) { }
     }
+
+    public class ExistingIDException : Exception
+    {
+        public ExistingIDException(string message)
+            : base(message) { }
+    }
 }

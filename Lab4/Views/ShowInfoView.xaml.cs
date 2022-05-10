@@ -25,6 +25,7 @@ namespace Lab4.Views
         {
             InitializeComponent();
             DataContext = viewModel = model;
+            Width = 600;
         }
     }
 }

@@ -24,6 +24,9 @@ namespace Lab4.Repositories
         public static async Task<int> GetID()
         {
             Random random = new Random();
+            while (File.Exists(System.IO.Path.Combine(BaseFolder, "person-" + random)))
+                    random = new Random();
+
             return random.Next();
             
         }

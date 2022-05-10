@@ -30,7 +30,7 @@ namespace Lab4.Models
         private string _sunSign;
         private int _age;
         #endregion
-        // немає id
+
         #region Properties
 
         public string ID

@@ -16,7 +16,7 @@ namespace Lab4.Models
         private string _age;
         private string _id;
 
- 
+
 
         private string _chineseSign;
         private string _sunSign;
@@ -24,18 +24,18 @@ namespace Lab4.Models
 
 
         public DBPerson(string id, string firstName, string lastName, string age,
-            string email,  string sunSign, string chineseSign)
+            string email, string sunSign, string chineseSign)
         {
             _id = id;
             _firstName = firstName;
             _lastNname = lastName;
-           _email = email;
-           _age = age;
-            
+            _email = email;
+            _age = age;
+
             _sunSign = sunSign;
             _chineseSign = chineseSign;
         }
-        public  string ID { 
+        public string ID {
             get
             {
                 return _id;
@@ -52,19 +52,40 @@ namespace Lab4.Models
                 _firstName = value;
             }
         }
+
+
         public string LastName {
             get
             { return _lastNname; }
-             set 
+            set
             {
                 Update(value, LastName);
                 _lastNname = value;
-            } 
+            }
         }
         public string Age {
-            get { return _age; } 
+            get { return _age; }
             set { _age = value; }
         }
+
+        public int AgeInt
+        {
+            get 
+            { 
+               return Int32.Parse(_age); 
+            }
+        }
+
+        public string IsAdult
+        {
+            get
+            {
+                if (AgeInt >= 18)
+                    return "adult";
+                return "child";
+            }
+        }
+
         public string Email {
             get { return _email; }
             set
