@@ -8,10 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab4.ViewModels
 {
@@ -19,29 +16,21 @@ namespace Lab4.ViewModels
     {
         private Action _gotoAddPerson;
         private RelayCommand<object> _addPersonCommand;
-
         public ObservableCollection<Person> _users;
         private PersonService _personService;
 
         public event PropertyChangedEventHandler PropertyChanged;
-        FileRepository fileRepository;
-
-        public List<DBPerson> Users
-        {
-            get => FileRepository.GetAll();
-           
-        }
-
 
         public MainNavigationTypes ViewType()
-        { return MainNavigationTypes.Table; }
+        { 
+            return MainNavigationTypes.Table; 
+        }
 
         public TableViewModel(Action gotoAddPerson)
         {
             _gotoAddPerson = gotoAddPerson;
             _personService = new PersonService();
             _users = new ObservableCollection<Person>(_personService.GetAllPersons());
-            fileRepository = new FileRepository();
         }
 
         public RelayCommand<object> AddPersonCommand
@@ -56,13 +45,17 @@ namespace Lab4.ViewModels
 
         private void AddPerson()
         {
-            _gotoAddPerson.Invoke();
-            
+            _gotoAddPerson.Invoke();   
         }
 
         private bool CanExecute(object obj)
         {
             return true;
+        }
+
+        public List<DBPerson> Users
+        {
+            get => FileRepository.GetAll();
         }
 
         [NotifyPropertyChangedInvocator]

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Lab4.Repositories
 {
@@ -21,16 +22,7 @@ namespace Lab4.Repositories
                 Directory.CreateDirectory(BaseFolder);
         }
 
-        public static async Task<int> GetID()
-        {
-            Random random = new Random();
-            while (File.Exists(System.IO.Path.Combine(BaseFolder, "person-" + random)))
-                    random = new Random();
-
-            return random.Next();
-            
-        }
-
+        // adds a new person
         public static async Task AddOrUpdateAsync(DBPerson obj)
         {
             var stringObj = JsonSerializer.Serialize(obj);
@@ -39,30 +31,29 @@ namespace Lab4.Repositories
             {
                 await sw.WriteAsync(stringObj);
             }
+            DBPerson p = JsonSerializer.Deserialize<DBPerson>(stringObj);
+            if (p.Age.Equals("0") || p.ChineseSign.Equals("") || p.SunSign.Equals(""))
+            {
+                MessageBox.Show("Error occured. Try again!");
+            }
         }
 
-        public static async Task Update(string id, string name, string oldname)
+        // updates a person
+        public static async Task Update(string id, string data, string oldData)
         {
             if (File.Exists(System.IO.Path.Combine(BaseFolder, "person-" + id)))
             {
-
                 string json = File.ReadAllText(System.IO.Path.Combine(BaseFolder, "person-" + id));
-                string a = json.Replace(oldname, name);
+                string a = json.Replace(oldData, data);
                 int i = a.Length;
                 File.Delete(System.IO.Path.Combine(BaseFolder, "person-" + id));
-
                 using (StreamWriter sw = new StreamWriter(Path.Combine(BaseFolder, "person-" + id), false))
                 {
                     await sw.WriteAsync(a);
                 }
 
-
             }
         }
-
-
-
-
 
         public async Task<DBPerson> GetAsync(string id)
         {
@@ -114,6 +105,16 @@ namespace Lab4.Repositories
             }
 
             return res;
+        }
+
+        public static async Task<int> GetID()
+        {
+            Random random = new Random();
+            while (File.Exists(System.IO.Path.Combine(BaseFolder, "person-" + random)))
+                random = new Random();
+
+            return random.Next();
+
         }
 
 

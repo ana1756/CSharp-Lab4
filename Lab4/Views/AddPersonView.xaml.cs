@@ -23,12 +23,10 @@ namespace Lab4.Views
         public AddPersonView()
         {
             InitializeComponent();
-            
         }
 
         private void datePicker_LostFocus(object sender, RoutedEventArgs e)
-        {
-            
+        { 
             if (((AddPersonViewModel)DataContext).Date != null)
                 if (datePicker!=null && datePicker.SelectedDate != null)
                 ((AddPersonViewModel)DataContext).BirthDate = datePicker.SelectedDate.Value;

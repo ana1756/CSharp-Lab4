@@ -10,7 +10,6 @@ namespace Lab4.Services
 {
     public class PersonService
     {
-        private static FileRepository Repository = new FileRepository();
 
         public List<Person> GetAllPersons()
         {
@@ -23,9 +22,5 @@ namespace Lab4.Services
             return res;
         }
 
-        public static Person convert(DBPerson p)
-        {
-            return new Person(p.ID, p.FirstName, p.LastName, p.Email, p.Age, p.SunSign, p.ChineseSign);
-        }
     }
 }

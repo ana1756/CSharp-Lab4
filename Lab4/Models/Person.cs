@@ -10,46 +10,32 @@ namespace Lab4.Models
     public class Person : INotifyPropertyChanged
     {
 
-        private static readonly string BaseFolder =
-          System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LAB4-PersonData");
-
-
         private static String emailRegex = "^(.+)@(.+)$";
         public event PropertyChangedEventHandler PropertyChanged;
-        private static int _id = 0;
 
         #region Private Fields
         private string _name;
         private string _surname;
         private string _email;
         private int _myId;
-
         private DateTime _birthDate;
-
         private string _chineseSign;
         private string _sunSign;
         private int _age;
         #endregion
 
         #region Properties
-
         public string ID
         {
             get { return _myId.ToString(); }
             set { _myId = Int32.Parse(value); }
         }
 
-
         public string FirstName
         {
             get { return _name; }
-            set { _name = value;
-
-            }
-            
+            set { _name = value; }
         }
-
-
 
         public string LastName
         {

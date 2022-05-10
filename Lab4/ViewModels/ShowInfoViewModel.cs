@@ -111,7 +111,6 @@ namespace Lab4.ViewModels
         #endregion
 
 
-
         public MainNavigationTypes ViewType()
         {
             return MainNavigationTypes.ShowInfo;

@@ -91,13 +91,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\DBPerson.cs" />
-    <Compile Include="Models\PersonCandidate.cs" />
     <Compile Include="Navigation\BaseNavigatableViewModel.cs" />
     <Compile Include="Navigation\INavigatable.cs" />
     <Compile Include="Navigation\NavigatableTypes.cs" />
     <Compile Include="Repositories\FileRepository.cs" />
     <Compile Include="Services\AuthentificationService.cs" />
-    <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\PersonService.cs" />
     <Compile Include="Utils\RelayCommand.cs" />
     <Compile Include="ViewModels\AddPersonViewModel.cs" />

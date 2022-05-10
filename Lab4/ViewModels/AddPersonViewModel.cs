@@ -5,10 +5,6 @@ using Lab4.Services;
 using Lab4.Utils;
 using Lab4.Views;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Lab4.ViewModels
@@ -127,13 +123,6 @@ namespace Lab4.ViewModels
 
         #endregion
 
-        private void Back()
-        {
-
-            _gotoInfoPerson.Invoke();
-
-        }
-
 
         public MainNavigationTypes ViewType()
         {
@@ -145,9 +134,7 @@ namespace Lab4.ViewModels
         {
             try
             {
-                _person = new Person(Name, Surname, Email, BirthDate);
-                
-                
+                _person = new Person(Name, Surname, Email, BirthDate);    
             }
             catch (InvalidEmailException e)
             {
@@ -166,7 +153,7 @@ namespace Lab4.ViewModels
             }
 
             var authService = new AuthentificationService();
-           if (authService.RegisterUser(_person).Result)
+            if (authService.RegisterUser(_person).Result)
             {
                 MessageBox.Show("Authentification Succeeded!");
             }
@@ -187,6 +174,12 @@ namespace Lab4.ViewModels
                && !String.IsNullOrWhiteSpace(Surname)
                && !String.IsNullOrWhiteSpace(Email)
                && !(BirthDate.Equals(DateTime.MinValue));
+        }
+
+        // goes back to the table
+        private void Back()
+        {
+            _gotoInfoPerson.Invoke();
         }
 
     }

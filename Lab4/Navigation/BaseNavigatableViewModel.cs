@@ -1,12 +1,9 @@
 ﻿using JetBrains.Annotations;
-using Lab4.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab4.Navigation
 {
@@ -17,14 +14,13 @@ namespace Lab4.Navigation
 
         public INavigatable<TObject> CurrentViewModel
         {
-            get
-            {
-                return _currentViewModel;
+            get 
+            {  
+                return _currentViewModel; 
             }
             private set
             {
-                if (_currentViewModel == value)
-                    return;
+                if (_currentViewModel == value) return;
                 _currentViewModel = value;
                 OnPropertyChanged();
             }

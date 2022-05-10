@@ -10,18 +10,15 @@ namespace Lab4.Models
     public class DBPerson
     {
 
+        #region private fields
+        private string _id;
         private string _firstName;
         private string _lastNname;
         private string _email;
         private string _age;
-        private string _id;
-
-
-
         private string _chineseSign;
         private string _sunSign;
-
-
+        #endregion
 
         public DBPerson(string id, string firstName, string lastName, string age,
             string email, string sunSign, string chineseSign)
@@ -31,21 +28,19 @@ namespace Lab4.Models
             _lastNname = lastName;
             _email = email;
             _age = age;
-
             _sunSign = sunSign;
             _chineseSign = chineseSign;
         }
-        public string ID {
-            get
-            {
-                return _id;
-            }
+
+        #region Properties
+        public string ID 
+        {
+            get { return _id; }
         }
-        public string FirstName {
-            get
-            {
-                return _firstName;
-            }
+
+        public string FirstName 
+        {
+            get { return _firstName; }
             set
             {
                 Update(value, FirstName);
@@ -53,17 +48,18 @@ namespace Lab4.Models
             }
         }
 
-
-        public string LastName {
-            get
-            { return _lastNname; }
+        public string LastName 
+        {
+            get { return _lastNname; }
             set
             {
                 Update(value, LastName);
                 _lastNname = value;
             }
         }
-        public string Age {
+
+        public string Age 
+        {
             get { return _age; }
             set { _age = value; }
         }
@@ -86,7 +82,8 @@ namespace Lab4.Models
             }
         }
 
-        public string Email {
+        public string Email 
+        {
             get { return _email; }
             set
             {
@@ -95,11 +92,14 @@ namespace Lab4.Models
             }
         }
        
-        public string SunSign {
+        public string SunSign 
+        {
             get { return _sunSign; }
             set { _sunSign = value; }
         }
-        public string ChineseSign {
+
+        public string ChineseSign 
+        {
             get { return _chineseSign; }
             set { _chineseSign = value; }
         }
@@ -108,9 +108,10 @@ namespace Lab4.Models
         {
             await FileRepository.Update(ID, oldName, newName);
         }
+        #endregion
 
 
-        
+
 
 
 
