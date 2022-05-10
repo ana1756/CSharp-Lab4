@@ -1,4 +1,5 @@
-﻿using Lab4.Models;
+﻿using Lab4.Exceptions;
+using Lab4.Models;
 using Lab4.Services;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,9 @@ namespace Lab4.Repositories
             DBPerson p = JsonSerializer.Deserialize<DBPerson>(stringObj);
             if (p.Age.Equals("0") || p.ChineseSign.Equals("") || p.SunSign.Equals(""))
             {
+                File.Delete(System.IO.Path.Combine(BaseFolder, "person-" + obj.ID));
                 MessageBox.Show("Error occured. Try again!");
+                throw new PersonException("Error occured.");
             }
         }
 

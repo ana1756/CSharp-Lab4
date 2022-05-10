@@ -1,4 +1,5 @@
-﻿using Lab4.Models;
+﻿using Lab4.Exceptions;
+using Lab4.Models;
 using Lab4.Repositories;
 using System.Threading.Tasks;
 
@@ -12,7 +13,14 @@ namespace Lab4.Services
         {
             DBPerson dbUser = new DBPerson(regUser.ID, regUser.FirstName, regUser.LastName, regUser.Age.ToString(),
             regUser.Email, regUser.SunSign, regUser.ChineseSign);
-            await FileRepository.AddOrUpdateAsync(dbUser);
+            try
+            {
+                await FileRepository.AddOrUpdateAsync(dbUser);
+            }
+            catch (PersonException ex)
+            {
+                return false;
+            }
             return true;
         }
     }

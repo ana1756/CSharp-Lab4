@@ -156,15 +156,16 @@ namespace Lab4.ViewModels
             if (authService.RegisterUser(_person).Result)
             {
                 MessageBox.Show("Authentification Succeeded!");
-            }
-           // _gotoInfoPerson.Invoke();
 
-            ShowInfoView sw = new ShowInfoView(this);
-           // Thread.Sleep(2000);
-            sw.Show();
-            if (IsBirthday)
-            {
-                MessageBox.Show("Happy Birthday!", "Message");
+                // _gotoInfoPerson.Invoke();
+
+                ShowInfoView sw = new ShowInfoView(this);
+                // Thread.Sleep(2000);
+                sw.Show();
+                if (IsBirthday)
+                {
+                    MessageBox.Show("Happy Birthday!", "Message");
+                }
             }
         }
 

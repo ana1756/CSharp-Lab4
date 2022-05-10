@@ -29,4 +29,10 @@ namespace Lab4.Exceptions
         public ExistingIDException(string message)
             : base(message) { }
     }
+
+    public class PersonException : Exception
+    {
+        public PersonException(string message)
+            : base (message) { }
+    }
 }
